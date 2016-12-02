@@ -1,9 +1,4 @@
-/*
-@font-face {
-	font-family: Source Sans Pro, Segoe UI Symbol, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, helvetica, sans;
-	font-style: normal;
-}
-*/
+
 body {
 	font-family: Source Sans Pro, Segoe UI Symbol, Segoe UI, Roboto,
 		Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif,
@@ -13,26 +8,31 @@ body {
 		2s, background-image 0.5s;
 	transition: display 2s, width 2s, height 2s, transform 2s,
 		background-image 0.5s;
+	background-color: black;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
-	background-color: rgb(45, 45, 45);
 	color: rgb(219, 219, 219);
 	margin: 0px;
 	padding: 0px;
 }
-/*body {
-	font-family: Segoe UI Symbol, Segoe UI, Helvetica, Sans;
-	background-color: #333;
-}*/
-svg {
-	fill: red;
-	color: white;
-	line: blue;
-}
 
-iframe {
-	border: 0px;
+button {
+	color: black;
+	vertical-align: middle;
+	display: inline-block;
+	border-radius: 0.5em;
+	margin: 1em;
+	padding: 1em;
+	border-style: none;
+	-webkit-transition: color 77ms ease 1s;
+	-moz-transition: color 77ms ease 1s;
+	-o-transition: color 77ms ease 1s;
+	transition: color 77ms ease 1s;
+	-webkit-transition: background-color 77ms ease 1s;
+	-moz-transition: background-color 77ms ease 1s;
+	-o-transition: background-color 77ms ease 1s;
+	transition: background-color 77ms ease 1s;
 }
 
 a {
@@ -45,7 +45,7 @@ a:visited {
 }
 
 input, select, textarea, button {
-	
+
 }
 
 p {
@@ -93,7 +93,7 @@ ul:hover {
 	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
 */
-	
+
 }
 
 li {
@@ -146,24 +146,16 @@ li {
 	list-style: none;
 }
 
-button {
-	color: black;
-	vertical-align: middle;
-	display: inline-block;
-	border-radius: 0.5em;
-	margin: 1em;
-	padding: 1em;
-	border-style: none;
-	-webkit-transition: color 77ms ease 1s;
-	-moz-transition: color 77ms ease 1s;
-	-o-transition: color 77ms ease 1s;
-	transition: color 77ms ease 1s;
-	-webkit-transition: background-color 77ms ease 1s;
-	-moz-transition: background-color 77ms ease 1s;
-	-o-transition: background-color 77ms ease 1s;
-	transition: background-color 77ms ease 1s;
+.borderLine {
+	background-color: rgba(128,128,128,0.2);
+	margin: 0.1em;
+	padding: 0.1em;
+	border-color: white;
+	border-style: solid;
+	border-radius: 0.1em;
+	border-width: 0.01em;
+	border-color: white;
 }
-
 .landscape_only {
 	display: none;
 }
@@ -184,32 +176,25 @@ button {
 
 @media ( max-width : 1080px) and (orientation:portrait) {
 	body {
-		/* 		background-color: red; */
-		/*background-color: rgba(0,0,0,0);*/
-		font-size: 250%;
+	font-size: 250%;
 	}
 }
 
 @media ( max-width : 720px) and (orientation:portrait) {
 	body {
-		/*background-color: rgba(72,72,72,0);*/
-		/* 		background-color: orange; */
 		font-size: 140%;
 	}
 }
 
 @media ( max-width : 480px) and (orientation:portrait) {
 	body {
-		/*background-color: rgba(48,48,48,0);*/
-		/* 		background-color: blue; */
 		font-size: 130%;
 	}
 }
 
 @media ( max-width : 480px) and (orientation:landscape) {
 	body {
-		/* 		background-color: black; */
-		
+		 		//background-color: lime;
 	}
 	.landscape_only {
 		display: inline;
@@ -221,7 +206,6 @@ button {
 
 @media ( max-width : 1920px) and (orientation: landscape) {
 	body {
-		background-color: black;
 		font-size: 200%;
 	}
 	.landscape_only {

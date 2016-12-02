@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "preinstall": "npm install /home/jph/git/rui.js/",
-    "dev": "webpack-dev-server --hot --inline",
+    "dev": "webpack-dev-server --hot --inline --host 0.0.0.0 --port 8000",
     "build-dev": "webpack -g --watch",
     "build": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
