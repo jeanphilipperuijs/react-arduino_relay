@@ -1,9 +1,5 @@
 import React from 'react';
-import ProgressCallback from 'rui';
-import ResponseTime from 'rui';
-import Since from 'rui';
-import decreasingBlur from 'rui';
-import timestamp from 'rui';
+import difff from '/home/jph/git/rui.js/since.js';
 
 export default class Toggle extends React.Component {
     constructor( props ) {
@@ -41,7 +37,7 @@ export default class Toggle extends React.Component {
         xobj.open( 'GET', url, true );
         xobj.onreadystatechange = function() {
 
-            decreasingBlur( xobj.readyState, this.refs.toggle );
+            //decreasingBlur( xobj.readyState, this.refs.toggle );
 
             if ( xobj.readyState < 4 ) {
                 this.setState( {
@@ -105,9 +101,7 @@ export default class Toggle extends React.Component {
                     <input type="checkbox" checked={this.state.checked} onChange={this.toggle.bind( this )} />
                     <div className="slider"></div>
                 </label>
-                <Since response_time={this.state.response_time} />
                 <span title={this.props.title + '@ ' + this.state.response_time}>{this.props.title}</span>
             </div> );
     }
 }
-/* <ProgressCallback http={this.state.http} cb={this.props.title} /> */

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgressCallback from 'rui';
+
 
 var RelayInfo = React.createClass( {
     getInitialState: function() {

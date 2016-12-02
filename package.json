@@ -4,6 +4,7 @@
   "description": "Relay Manager",
   "main": "webpack.config.js",
   "scripts": {
+    "preinstall": "npm install /home/jph/git/rui.js/",
     "dev": "webpack-dev-server --hot --inline",
     "build-dev": "webpack -g --watch",
     "build": "webpack -p",
@@ -29,8 +30,7 @@
     "react-dom": "^15.4.1",
     "react-localization": "0.0.8",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2",
-    "rui": "file:/home/jph/workspace/node_rui"
+    "webpack-dev-server": "^1.16.2"
   },
   "author": "Jean-Philippe Ruijs",
   "license": "ISC"
