@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Toggle WAP Relay
+Comment=Toggle Relay 0
+Exec=curl http://ad.amapz.com/relay/0/toggle
+Icon=/usr/share/icons/Adwaite/scalable/devices/ac-adapter-symbolic.svg
+Terminal=true

@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Toggle Printer Relay
+Comment=Toggle Relay 1
+Exec=curl http://ad.amapz.com/relay/1/toggle
+Icon=/usr/share/icons/Adwaite/scalable/devices/ac-adapter-symbolic.svg
+Terminal=true
