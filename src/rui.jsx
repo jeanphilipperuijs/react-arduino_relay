@@ -21,7 +21,7 @@ if ( document.location.protocol == 'file:' ) {
     if ( debug ) console.log( 'authed by fileprto' );
     authed = true;
 }
-if ( !authed && document.location.hostname == 'dom.amapz.com' ) {
+if ( !authed && document.location.hostname == 'relay.ruijs.fr' ) {
     if ( debug ) console.log( 'authed by hostname' );
     authed = true;
 }
