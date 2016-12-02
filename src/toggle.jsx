@@ -1,9 +1,9 @@
 import React from 'react';
-import ProgressCallback from '../common/progresscallback.jsx';
-import ResponseTime from '../common/responsetime.jsx';
-import Since from '../common/since.jsx';
-import decreasingBlur from '../common/blur.js';
-import timestamp from '../common/timestamp.js';
+import ProgressCallback from './common/progresscallback.jsx';
+import ResponseTime from './common/responsetime.jsx';
+import Since from './common/since.jsx';
+import decreasingBlur from './common/blur.js';
+import timestamp from './common/timestamp.js';
 
 export default class Toggle extends React.Component {
     constructor( props ) {
