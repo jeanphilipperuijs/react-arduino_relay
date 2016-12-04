@@ -11,10 +11,10 @@
 .switch input {
 	border-style: solid;
 	border-left-width: medium;
-	
 	display: none;
 }
-/* The slider */
+
+/* default switch background OFF */
 .slider {
 	position: absolute;
 	height: 1em;
@@ -24,27 +24,34 @@
 	vertical-align: middle;
 	cursor: pointer;
 	background-color: rgb(72,0,0);
-	-webkit-transition: .3s;
-	transition: .3s;
+	-webkit-transition: .15s;
+	transition: .15s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
 }
+/* toggle button */
 .slider:before {
 	position: absolute;
-	content: "";
+	content: " ";
 	height: 1em;
 	width: 1em;
-	background-color: rgba(255,255,255,0.5);
-	-webkit-transition: .3s;
-	transition: .3s;
+	background-color: white;
+	-webkit-transition: .1s;
+	transition: .1s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
 }
-input:checked+.slider {
-	background-color: rgb(0,128,0);
-}
-/*input:focus+.slider {
-	box-shadow: 0 0 .05em rgb(0,228,12);
-}*/
-
 input:checked+.slider:before {
 	-webkit-transform: translateX(1em);
 	-ms-transform: translateX(1em);
 	transform: translateX(1em);
 }
+/* switch background ON */
+input:checked+.slider {
+	background-color: rgb(0,128,0);
+}
+/*
+input:focus+.slider {
+	background-color: red;
+	box-shadow: 0 0 1.105em rgb(0,228,12);
+}*/
