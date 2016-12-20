@@ -15,7 +15,8 @@ var RelayInfo = React.createClass( {
         // if(debug) console.log( "RelayInfo::componentWillMount" );
     },
     sso: function() {
-        let url = 'http://ad.amapz.com/relay/info';
+        console.log('rootUrl', rootUrl);
+        let url = this.props.restRoot + '/relay/info';
         // if(debug) console.log(url);
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
@@ -63,7 +64,7 @@ var RelayInfo = React.createClass( {
         xobj.send( null );
     },
     load: function() {
-        let url = 'http://ad.amapz.com/relay/info';
+        let url = this.props.restRoot + 'relay/info';
         // if(debug) console.log(url);
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );

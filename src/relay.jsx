@@ -26,8 +26,8 @@ class ArduinoRelays extends React.Component {
         return (
             <div id="relays" className="borderLine">
                 <h2>{locstr.title}</h2>
-                <Toggle rid="0" title={locstr.relay0.title} refresh={60000} />
-                <Toggle rid="1" title={locstr.relay1.title} refresh={120000} />
+                <Toggle restRoot={this.props.restRoot} rid="0" title={locstr.relay0.title} refresh={60000} />
+                <Toggle restRoot={this.props.restRoot} rid="1" title={locstr.relay1.title} refresh={120000} />
             </div>
         );
     }

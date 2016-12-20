@@ -30,7 +30,7 @@ export default class Toggle extends React.Component {
     }
 
     status() {
-        let url = 'http://ad.amapz.com/relay/' + this.props.rid + '/status';
+        let url = this.props.restRoot + '/relay/' + this.props.rid + '/status';
         let xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
         xobj.open( 'GET', url, true );
@@ -58,7 +58,8 @@ export default class Toggle extends React.Component {
     }
 
     toggle() {
-        let url = 'http://ad.amapz.com/relay/' + this.props.rid + '/toggle';
+        console.log('rootUrl', rootUrl);
+        let url = this.props.restRoot + 'relay/' + this.props.rid + '/toggle';
         let xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
         xobj.open( 'GET', url, true );
