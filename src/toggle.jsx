@@ -58,7 +58,7 @@ export default class Toggle extends React.Component {
     }
 
     toggle() {
-        let url = this.props.restRoot + 'relay/' + this.props.rid + '/toggle';
+        let url = this.props.restRoot + '/relay/' + this.props.rid + '/toggle';
         let xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
         xobj.open( 'GET', url, true );
