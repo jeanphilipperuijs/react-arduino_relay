@@ -3,7 +3,6 @@ import React from 'react';
 
 var RelayInfo = React.createClass( {
     getInitialState: function() {
-        // if(debug) console.log( "RelayInfo::getInitialState" );
         return {
             response_time: undefined
         };
@@ -15,9 +14,7 @@ var RelayInfo = React.createClass( {
         // if(debug) console.log( "RelayInfo::componentWillMount" );
     },
     sso: function() {
-        console.log('rootUrl', rootUrl);
         let url = this.props.restRoot + '/relay/info';
-        // if(debug) console.log(url);
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
         xobj.open( 'GET', url, true );
@@ -65,12 +62,10 @@ var RelayInfo = React.createClass( {
     },
     load: function() {
         let url = this.props.restRoot + 'relay/info';
-        // if(debug) console.log(url);
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
         xobj.open( 'GET', url, true );
         xobj.onreadystatechange = function() {
-            // if(debug) console.log('RelayInfo:', xobj.readyState, xobj.status );
             this.setState( {
                 httpstate: xobj.readyState,
                 response_time: new Date().toISOString()
@@ -80,7 +75,6 @@ var RelayInfo = React.createClass( {
                 let t = xobj.responseText;
                 let j = JSON.parse( t );
                 console.log( j );
-                // if(debug) console.log(JSON.stringify(j,null,3));
                 this.setState( {
                     info: j,
                     response_time: new Date().toISOString()
