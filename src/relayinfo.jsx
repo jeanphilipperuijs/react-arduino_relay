@@ -8,6 +8,7 @@ var RelayInfo = React.createClass( {
         };
     },
     componentDidMount: function() {
+      this.sso();
         // if(debug) console.log( "RelayInfo::componentDidMount" );
     },
     componentWillMount: function() {
@@ -61,7 +62,7 @@ var RelayInfo = React.createClass( {
         xobj.send( null );
     },
     load: function() {
-        let url = this.props.restRoot + 'relay/info';
+        let url = this.props.restRoot + '/relay/info';
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
         xobj.open( 'GET', url, true );
@@ -88,7 +89,7 @@ var RelayInfo = React.createClass( {
         let jsontxt = JSON.stringify( this.state, null, 3 );
         return ( <details ref="detailview" id="detailview">
             <summary>Debug</summary>
-            <ProgressCallback httpstate={this.state.httpstate} cb={null} />
+            <span>{this.state.httpstate}</span>
             <pre>{jsontxt}</pre>
         </details> );
     }

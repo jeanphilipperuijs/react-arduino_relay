@@ -28,6 +28,7 @@ class ArduinoRelays extends React.Component {
                 <h2>{locstr.title}</h2>
                 <Toggle restRoot={this.props.restRoot} rid="0" title={locstr.relay0.title} refresh={60000} />
                 <Toggle restRoot={this.props.restRoot} rid="1" title={locstr.relay1.title} refresh={120000} />
+                <RelayInfo restRoot={this.props.restRoot} />
             </div>
         );
     }
