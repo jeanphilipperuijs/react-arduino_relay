@@ -46,6 +46,10 @@ var RelayInfo = React.createClass( {
                 this.refs.detailview.style.WebkitFilter = "blur(1px)";
                 this.refs.detailview.style.Filter = "blur(1px)";
             }
+            if ( xobj.readyState == 3 ) {
+                this.refs.detailview.style.WebkitFilter = "blur(0px)";
+                this.refs.detailview.style.Filter = "blur(0px)";
+            }
             // if(debug) console.log('RelayInfo:', xobj.readyState, xobj.status );
             if ( xobj.readyState == 4 && xobj.status == "200" ) {
                 let t = xobj.responseText;
