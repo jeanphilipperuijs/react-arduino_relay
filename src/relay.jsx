@@ -7,18 +7,18 @@ import RelayInfo from './relayinfo.jsx';
 let locstr = new LocalizationString( {
     en: {
         title: 'Relays',
-        relay0: { title: 'Router' },
-        relay1: { title: 'Printer' }
+        relay0: { title: 'Relay 0' },
+        relay1: { title: 'Relay 1' }
     },
     fr: {
         title: 'Relais',
-        relay0: { title: 'Routeur' },
-        relay1: { title: 'Imprimante' }
+        relay0: { title: 'Relai 0' },
+        relay1: { title: 'Relai 1' }
     },
     nl: {
-        title: 'Relays',
-        relay0: { title: 'Router' },
-        relay1: { title: 'Printer' }
+        title: 'Relais',
+        relay0: { title: 'Relai 0' },
+        relay1: { title: 'Relai 1' }
     }
 });
 class ArduinoRelays extends React.Component {
