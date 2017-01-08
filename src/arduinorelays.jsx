@@ -1,8 +1,8 @@
 import React from 'react';
-import LocalizationString from 'react-localization';
 
 import Toggle from './toggle.jsx';
 import RelayInfo from './relayinfo.jsx';
+import LocalizationString from 'react-localization';
 
 let locstr = new LocalizationString( {
     en: {
@@ -21,13 +21,20 @@ let locstr = new LocalizationString( {
         relay1: { title: 'Relai 1' }
     }
 });
+
 class ArduinoRelays extends React.Component {
     render() {
+        try{if ( title_relay0 != undefined ) {
+            locstr.relay0.title = title_relay0;
+        }
+        if ( title_relay1 != undefined ) {
+            locstr.relay1.title = title_relay1;
+        }}catch(err){console.log(err);}
         return (
             <div id="relays" className="borderLine">
                 <h2>{locstr.title}</h2>
-                <Toggle restRoot={this.props.restRoot} rid="0" title={locstr.relay0.title} refresh={60000} />
-                <Toggle restRoot={this.props.restRoot} rid="1" title={locstr.relay1.title} refresh={120000} />
+                <Toggle restRoot={this.props.restRoot} rid="0" title={locstr.relay0.title} refresh={this.props.refresh} />
+                <Toggle restRoot={this.props.restRoot} rid="1" title={locstr.relay1.title} refresh={this.props.refresh} />
                 <RelayInfo restRoot={this.props.restRoot} />
             </div>
         );

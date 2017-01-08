@@ -53,7 +53,7 @@ var RelayInfo = React.createClass( {
                 // if(debug) console.log(JSON.stringify(j,null,3));
                 this.setState( {
                     info: j,
-                    dummy: Math.random(),
+                   // dummy: Math.random(),
                     response_time: new Date().toISOString()
                 });
                 document.getElementById( "detailview" ).setAttribute( "open", true );
