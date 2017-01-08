@@ -46,7 +46,7 @@ var RelayInfo = React.createClass( {
                 this.refs.detailview.style.WebkitFilter = "blur(1px)";
                 this.refs.detailview.style.Filter = "blur(1px)";
             }
-            if ( xobj.readyState == 3 ) {
+            if ( xobj.readyState == 4 ) {
                 this.refs.detailview.style.WebkitFilter = "blur(0px)";
                 this.refs.detailview.style.Filter = "blur(0px)";
             }
