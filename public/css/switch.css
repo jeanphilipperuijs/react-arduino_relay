@@ -1,10 +1,15 @@
-/* http://www.w3schools.com/howto/howto_css_switch.asp */
+#toggle{
+	height: 2.5em;
+	padding: 0.5em;
+	font-size: 2em;
+}
+	/* http://www.w3schools.com/howto/howto_css_switch.asp */
 /*The switch - the box around the slider */
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 2em;
-	height: 1em;
+	width: 4em;
+	height: 2em;
 	margin: 0.0em;
 }
 /* Hide default HTML checkbox */
@@ -17,10 +22,10 @@
 /* default switch background OFF */
 .slider {
 	position: absolute;
-	height: 1em;
-	width: 2em;
+	height: 2em;
+	width: 4em;
 	left: -0.2em;
-	margin: 0.1em;
+	margin: 0.2em;
 	vertical-align: middle;
 	cursor: pointer;
 	background-color: rgb(72,0,0);
@@ -33,8 +38,8 @@
 .slider:before {
 	position: absolute;
 	content: " ";
-	height: 1em;
-	width: 1em;
+	height: 2em;
+	width: 2em;
 	background-color: white;
 	-webkit-transition: .1s;
 	transition: .1s;
@@ -42,9 +47,9 @@
 	transition-timing-function: ease-out;
 }
 input:checked+.slider:before {
-	-webkit-transform: translateX(1em);
-	-ms-transform: translateX(1em);
-	transform: translateX(1em);
+	-webkit-transform: translateX(2em);
+	-ms-transform: translateX(2em);
+	transform: translateX(2em);
 }
 /* switch background ON */
 input:checked+.slider {
