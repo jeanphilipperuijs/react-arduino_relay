@@ -7,14 +7,25 @@ var RelayInfo = React.createClass( {
             response_time: undefined
         };
     },
-    componentDidMount: function() {
-      this.sso();
-        // if(debug) console.log( "RelayInfo::componentDidMount" );
+    componentDidMount() {
+        setInterval( function() {
+            let detailview = document.getElementById( "detailview" );
+            let detailstate = detailview.getAttribute( "open" );
+            console.log( detailview, detailstate );
+            if ( detailstate != null ) {
+                console.log( 'interval load relayinfo' );
+                this.load();
+            } else {
+                console.log( detailstate );
+            }
+
+        }.bind( this ), this.props.refresh );
     },
     componentWillMount: function() {
-        // if(debug) console.log( "RelayInfo::componentWillMount" );
+        this.load();
     },
     sso: function() {
+        console.log( 'sso' );
         let url = this.props.restRoot + '/relay/info';
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
@@ -57,7 +68,7 @@ var RelayInfo = React.createClass( {
                 // if(debug) console.log(JSON.stringify(j,null,3));
                 this.setState( {
                     info: j,
-                   // dummy: Math.random(),
+                    // dummy: Math.random(),
                     response_time: new Date().toISOString()
                 });
                 document.getElementById( "detailview" ).setAttribute( "open", true );
@@ -66,6 +77,7 @@ var RelayInfo = React.createClass( {
         xobj.send( null );
     },
     load: function() {
+        console.log( 'load' );
         let url = this.props.restRoot + '/relay/info';
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType( "application/json" );
@@ -93,7 +105,6 @@ var RelayInfo = React.createClass( {
         let jsontxt = JSON.stringify( this.state, null, 3 );
         return ( <details ref="detailview" id="detailview">
             <summary>Debug</summary>
-            <span>{this.state.httpstate}</span>
             <pre>{jsontxt}</pre>
         </details> );
     }

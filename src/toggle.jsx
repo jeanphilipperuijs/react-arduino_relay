@@ -16,12 +16,14 @@ export default class Toggle extends React.Component {
 
     componentDidMount() {
         setInterval( function() {
+            console.log( 'interval status' );
             this.status();
         }.bind( this ), this.props.refresh );
 
-        setInterval( function() {
-            this.forceUpdate();
-        }.bind( this ), 10 );
+//        setInterval( function() {
+//            console.log( 'interval forceupdate' );
+//            this.forceUpdate();
+//        }.bind( this ), this.props.refresh );
 
     }
 
