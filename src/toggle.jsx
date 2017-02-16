@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default class Toggle extends React.Component {
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
 
         this.state = {
             debug: true,
@@ -15,16 +15,10 @@ export default class Toggle extends React.Component {
     }
 
     componentDidMount() {
-        setInterval( function() {
-            console.log( 'interval status' );
+        setInterval(function () {
+            console.log('interval status');
             this.status();
-        }.bind( this ), this.props.refresh );
-
-//        setInterval( function() {
-//            console.log( 'interval forceupdate' );
-//            this.forceUpdate();
-//        }.bind( this ), this.props.refresh );
-
+        }.bind(this), this.props.refresh);
     }
 
     componentWillMount() {
@@ -34,61 +28,57 @@ export default class Toggle extends React.Component {
     status() {
         let url = this.props.restRoot + '/relay/' + this.props.rid + '/status';
         let xobj = new XMLHttpRequest();
-        xobj.overrideMimeType( "application/json" );
-        xobj.open( 'GET', url, true );
-        xobj.onreadystatechange = function() {
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', url, true);
+        xobj.onreadystatechange = function () {
 
-            //decreasingBlur( xobj.readyState, this.refs.toggle );
+            decreasingBlur(xobj.readyState, this.refs.toggle);
 
-            if ( xobj.readyState < 4 ) {
-                this.setState( {
-                    http: xobj.readyState
-                });
+            if (xobj.readyState < 4) {
+                this.setState({http: xobj.readyState});
             }
 
-            if ( xobj.readyState == 4 && xobj.status == "200" ) {
+            if (xobj.readyState == 4 && xobj.status == "200") {
                 let t = xobj.responseText;
-                let j = JSON.parse( t )[this.state.rid];
-                this.setState( {
+                let j = JSON.parse(t)[this.state.rid];
+                this.setState({
                     relay: j,
-                    checked: this.isPowered( j ),
+                    checked: this.isPowered(j),
                     response_time: Date.now()
                 });
             }
-        }.bind( this );
-        xobj.send( null );
+        }.bind(this);
+        xobj.send(null);
     }
 
     toggle() {
         let url = this.props.restRoot + '/relay/' + this.props.rid + '/toggle';
         let xobj = new XMLHttpRequest();
-        xobj.overrideMimeType( "application/json" );
-        xobj.open( 'GET', url, true );
-        xobj.onreadystatechange = function() {
-            if ( xobj.readyState < 4 ) {
-                this.setState( {
-                    http: xobj.readyState
-                });
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', url, true);
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState < 4) {
+                this.setState({http: xobj.readyState});
             }
-            if ( xobj.readyState == 4 && xobj.status == "200" ) {
-                let j = JSON.parse( xobj.responseText )[this.state.rid];
-                this.setState( {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                let j = JSON.parse(xobj.responseText)[this.state.rid];
+                this.setState({
                     http: xobj.readyState,
                     relay: j,
-                    checked: this.isPowered( j ),
+                    checked: this.isPowered(j),
                     response_time: Date.now()
                 });
             }
-        }.bind( this );
-        xobj.send( null );
+        }.bind(this);
+        xobj.send(null);
     }
 
-    isPowered( s ) {
+    isPowered(s) {
         let bs = undefined;
-        if ( s.state == "0" || s.status == "0" ) {
+        if (s.state == "0" || s.status == "0") {
             bs = true;
         }
-        if ( s.state == "1" || s.status == "1" ) {
+        if (s.state == "1" || s.status == "1") {
             bs = false;
         }
         // if(this.state.debug) console.log('isPowered',s,bs);
@@ -97,12 +87,22 @@ export default class Toggle extends React.Component {
 
     render() {
         return (
-            <div ref="toggle" id="toggle" className="borderLine">
-                <label style={{ float: 'right' }} className="switch">
-                    <input type="checkbox" checked={this.state.checked} onChange={this.toggle.bind( this )} />
+            <div ref="toggle" id="toggle{this.props.rid}" className="borderLine">
+                <label
+                    style={{
+                    float: 'right'
+                }}
+                    className="switch">
+                    <input
+                        type="checkbox"
+                        checked={this.state.checked}
+                        onChange={this
+                        .toggle
+                        .bind(this)}/>
                     <div className="slider"></div>
                 </label>
                 <span title={this.props.title + '@ ' + this.state.response_time}>{this.props.title}</span>
-            </div> );
+            </div>
+        );
     }
 }

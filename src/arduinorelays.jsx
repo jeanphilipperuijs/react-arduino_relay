@@ -4,40 +4,62 @@ import Toggle from './toggle.jsx';
 import RelayInfo from './relayinfo.jsx';
 import LocalizationString from 'react-localization';
 
-let locstr = new LocalizationString( {
+let locstr = new LocalizationString({
     en: {
         title: 'Relays',
-        relay0: { title: 'Relay 0' },
-        relay1: { title: 'Relay 1' }
+        relay0: {
+            title: 'Relay 0'
+        },
+        relay1: {
+            title: 'Relay 1'
+        }
     },
     fr: {
         title: 'Relais',
-        relay0: { title: 'Relai 0' },
-        relay1: { title: 'Relai 1' }
+        relay0: {
+            title: 'Relai 0'
+        },
+        relay1: {
+            title: 'Relai 1'
+        }
     },
     nl: {
         title: 'Relais',
-        relay0: { title: 'Relai 0' },
-        relay1: { title: 'Relai 1' }
+        relay0: {
+            title: 'Relai 0'
+        },
+        relay1: {
+            title: 'Relai 1'
+        }
     }
 });
 
 class ArduinoRelays extends React.Component {
     render() {
         try {
-            if ( title_relay0 != undefined ) {
+            if (title_relay0 != undefined) {
                 locstr.relay0.title = title_relay0;
             }
-            if ( title_relay1 != undefined ) {
+            if (title_relay1 != undefined) {
                 locstr.relay1.title = title_relay1;
             }
-        } catch ( err ) { console.log( err ); }
+        } catch (err) {
+            console.log(err);
+        }
         return (
             <div id="relays" className="borderLine">
                 <h2>{locstr.title}</h2>
-                <Toggle restRoot={this.props.restRoot} rid="0" title={locstr.relay0.title} refresh={this.props.refresh} />
-                <Toggle restRoot={this.props.restRoot} rid="1" title={locstr.relay1.title} refresh={this.props.refresh} />
-                <RelayInfo restRoot={this.props.restRoot} refresh={this.props.refresh} />
+                <Toggle
+                    restRoot={this.props.restRoot}
+                    rid="0"
+                    title={locstr.relay0.title}
+                    refresh={this.props.refresh}/>
+                <Toggle
+                    restRoot={this.props.restRoot}
+                    rid="1"
+                    title={locstr.relay1.title}
+                    refresh={this.props.refresh}/>
+                <RelayInfo restRoot={this.props.restRoot} refresh={this.props.refresh}/>
             </div>
         );
     }
