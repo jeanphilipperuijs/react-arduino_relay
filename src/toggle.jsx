@@ -1,4 +1,5 @@
 import React from 'react';
+import { decreasingBlur } from './decreasingBlur.js';
 
 export default class Toggle extends React.Component {
     constructor(props) {
@@ -8,10 +9,10 @@ export default class Toggle extends React.Component {
             debug: true,
             relay: {},
             http: -1,
-            checked: false,
+            checked: undefined,
             response_time: -1,
             rid: 'relay' + this.props.rid
-        }
+        };
     }
 
     componentDidMount() {
@@ -35,7 +36,7 @@ export default class Toggle extends React.Component {
             decreasingBlur(xobj.readyState, this.refs.toggle);
 
             if (xobj.readyState < 4) {
-                this.setState({http: xobj.readyState});
+                this.setState({ http: xobj.readyState });
             }
 
             if (xobj.readyState == 4 && xobj.status == "200") {
@@ -57,8 +58,9 @@ export default class Toggle extends React.Component {
         xobj.overrideMimeType("application/json");
         xobj.open('GET', url, true);
         xobj.onreadystatechange = function () {
+            decreasingBlur(xobj.readyState, this.refs.toggle);
             if (xobj.readyState < 4) {
-                this.setState({http: xobj.readyState});
+                this.setState({ http: xobj.readyState });
             }
             if (xobj.readyState == 4 && xobj.status == "200") {
                 let j = JSON.parse(xobj.responseText)[this.state.rid];
@@ -87,18 +89,18 @@ export default class Toggle extends React.Component {
 
     render() {
         return (
-            <div ref="toggle" id="toggle{this.props.rid}" className="borderLine">
-                <label
-                    style={{
-                    float: 'right'
-                }}
-                    className="switch">
+            <div ref="toggle" id="toggle{this.props.rid}" className="borderLine"
+                style={{
+                    //float: 'right'
+                    columnCount: 2
+                }}>
+                <label className="switch">
                     <input
                         type="checkbox"
                         checked={this.state.checked}
                         onChange={this
-                        .toggle
-                        .bind(this)}/>
+                            .toggle
+                            .bind(this)} />
                     <div className="slider"></div>
                 </label>
                 <span title={this.props.title + '@ ' + this.state.response_time}>{this.props.title}</span>
