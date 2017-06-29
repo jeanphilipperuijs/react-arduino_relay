@@ -3,8 +3,8 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Toggle WAP Relay
+Name=Relay 0
 Comment=Toggle Relay 0
 Exec=curl http://ad.amapz.com/relay/0/toggle
-Icon=/usr/share/icons/Adwaite/scalable/devices/ac-adapter-symbolic.svg
+Icon=/usr/share/icons/gnome/scalable/devices/network-wired-symbolic.svg
 Terminal=true

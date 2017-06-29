@@ -3,7 +3,7 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Toggle Printer Relay
+Name=Relay 1
 Comment=Toggle Relay 1
 Exec=curl http://ad.amapz.com/relay/1/toggle
 Icon=/usr/share/icons/Adwaite/scalable/devices/ac-adapter-symbolic.svg
