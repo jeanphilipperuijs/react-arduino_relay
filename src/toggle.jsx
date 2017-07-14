@@ -9,10 +9,12 @@ export default class Toggle extends React.Component {
             debug: true,
             relay: {},
             http: -1,
+            delay: 0,
             checked: undefined,
             response_time: -1,
             rid: 'relay' + this.props.rid
         };
+        this.changeDelay = this.changeDelay.bind(this);
     }
 
     componentDidMount() {
@@ -49,7 +51,9 @@ export default class Toggle extends React.Component {
                 });
             }
         }.bind(this);
+
         xobj.send(null);
+
     }
 
     toggle() {
@@ -72,7 +76,12 @@ export default class Toggle extends React.Component {
                 });
             }
         }.bind(this);
-        xobj.send(null);
+
+        setTimeout(() => {
+            console.log('delay send');
+            xobj.send(null);
+        }, this.state.delay)
+
     }
 
     isPowered(s) {
@@ -87,9 +96,12 @@ export default class Toggle extends React.Component {
         return bs;
     }
 
+    changeDelay(e) {
+        this.setState({ delay: Number(event.target.value) / 1000 });
+    }
     render() {
         return (
-            <div ref="toggle" id="toggle{this.props.rid}" className="borderLine"
+            <div ref="toggle" id={`toggle${this.props.rid}`} className="borderLine"
                 style={{
                     //float: 'right'
                     columnCount: 2
@@ -103,6 +115,7 @@ export default class Toggle extends React.Component {
                             .bind(this)} />
                     <div className="slider"></div>
                 </label>
+                <input type="number" style={{ width: '5em' }} placeholder="delay (s)" onChange={this.changeDelay} />
                 <span title={this.props.title + '@ ' + this.state.response_time}>{this.props.title}</span>
             </div>
         );

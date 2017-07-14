@@ -2,10 +2,11 @@ import React from 'react';
 import { decreasingBlur } from './decreasingBlur.js';
 
 
-var RelayInfo = React.createClass({
-    getInitialState: function () {
+class RelayInfo extends React.Component {
+    getInitialState() {
         return { response_time: undefined };
-    },
+    }
+
     componentDidMount() {
         setInterval(function () {
             let detailview = document.getElementById("detailview");
@@ -19,11 +20,13 @@ var RelayInfo = React.createClass({
             }
 
         }.bind(this), this.props.refresh);
-    },
-    componentWillMount: function () {
+    }
+
+    componentWillMount() {
         this.load();
-    },
-    sso: function () {
+    }
+
+    sso() {
         // console.log('sso');
         let url = this.props.restRoot + '/relay/info';
         var xobj = new XMLHttpRequest();
@@ -52,8 +55,9 @@ var RelayInfo = React.createClass({
             }
         }.bind(this);
         xobj.send(null);
-    },
-    load: function () {
+    }
+
+    load() {
         //  console.log('load');
         let url = this.props.restRoot + '/relay/info';
         var xobj = new XMLHttpRequest();
@@ -79,8 +83,9 @@ var RelayInfo = React.createClass({
             }
         }.bind(this);
         xobj.send(null);
-    },
-    render: function () {
+    }
+    
+    render() {
         let jsontxt = JSON.stringify(this.state, null, 3);
         return (
             <details ref="detailview" id="detailview">
@@ -89,6 +94,6 @@ var RelayInfo = React.createClass({
             </details>
         );
     }
-});
+}
 
 module.exports = RelayInfo;
