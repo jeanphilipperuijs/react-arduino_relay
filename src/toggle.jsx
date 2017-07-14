@@ -9,7 +9,7 @@ export default class Toggle extends React.Component {
             debug: true,
             relay: {},
             http: -1,
-            delay: 0,
+            toggleDelayMs: 0,
             checked: undefined,
             response_time: -1,
             rid: 'relay' + this.props.rid
@@ -78,9 +78,9 @@ export default class Toggle extends React.Component {
         }.bind(this);
 
         setTimeout(() => {
-            console.log('delay send');
+            //console.log('delaying request');
             xobj.send(null);
-        }, this.state.delay)
+        }, this.state.toggleDelayMs)
 
     }
 
@@ -97,27 +97,46 @@ export default class Toggle extends React.Component {
     }
 
     changeDelay(e) {
-        this.setState({ delay: Number(event.target.value) / 1000 });
+        let v = Number(e.target.value) * 1000;
+        console.log('changeDelay', v);
+        this.setState({ toggleDelayMs: v });
     }
     render() {
         return (
             <div ref="toggle" id={`toggle${this.props.rid}`} className="borderLine"
                 style={{
                     //float: 'right'
-                    columnCount: 2
+                    columnCount: 3
                 }}>
-                <label className="switch">
+
+                <div>
+                    <h1 style={{ marginLeft: '0.5em' }}>{this.props.title}</h1>
+                </div>
+
+                <div>
+                    <label className="switch">
+                        <input
+                            type="checkbox"
+                            checked={this.state.checked}
+                            onChange={this
+                                .toggle
+                                .bind(this)} />
+                        <div className="slider"></div>
+                    </label>
+                </div>
+                <div>
                     <input
-                        type="checkbox"
-                        checked={this.state.checked}
-                        onChange={this
-                            .toggle
-                            .bind(this)} />
-                    <div className="slider"></div>
-                </label>
-                <input type="number" style={{ width: '5em' }} placeholder="delay (s)" onChange={this.changeDelay} />
-                <span title={this.props.title + '@ ' + this.state.response_time}>{this.props.title}</span>
-            </div>
+                        min="0.5"
+                        step="0.5"
+                        max={60 * 60 * 24}
+                        type="number" style={{
+                            fontSize : '1em',
+                            margin: '0.2em',
+                            height: '2em',
+/*                            width: '5em'*/
+                        }} placeholder="delay (s)" onChange={this.changeDelay} />
+                </div>
+            </div >
         );
     }
 }
