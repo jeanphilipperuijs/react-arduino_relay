@@ -110,7 +110,7 @@ export default class Toggle extends React.Component {
                 }}>
 
                 <div>
-                    <h1 style={{ marginLeft: '0.5em' }}>{this.props.title}</h1>
+                    <h2 style={{ marginLeft: '0.5em' }}>{this.props.title}</h2>
                 </div>
 
                 <div>
@@ -134,7 +134,7 @@ export default class Toggle extends React.Component {
                             margin: '0.2em',
                             height: '2em',
 /*                            width: '5em'*/
-                        }} placeholder="delay (s)" onChange={this.changeDelay} />
+                        }} placeholder={`delay (${this.state.toggleDelayMs}s)`} onChange={this.changeDelay} />
                 </div>
             </div >
         );
