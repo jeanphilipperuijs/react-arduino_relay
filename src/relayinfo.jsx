@@ -3,58 +3,19 @@ import { decreasingBlur } from './decreasingBlur.js';
 
 
 class RelayInfo extends React.Component {
-    getInitialState() {
-        return { response_time: undefined };
+
+    constructor() {
+        super();
+        this.setState({
+            httpstate: -1,
+            data: null
+        });
     }
 
     componentDidMount() {
-        setInterval(function () {
-            let detailview = document.getElementById("detailview");
-            let detailstate = detailview.getAttribute("open");
-            // console.log(detailview, detailstate);
-            if (detailstate != null) {
-                // console.log('interval load relayinfo');
-                this.load();
-            } else {
-                //console.log(detailstate);
-            }
-
-        }.bind(this), this.props.refresh);
-    }
-
-    componentWillMount() {
-        this.load();
-    }
-
-    sso() {
-        // console.log('sso');
-        let url = this.props.restRoot + '/relay/info';
-        var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-        xobj.open('GET', url, true);
-        xobj.onreadystatechange = function () {
-            // if(debug) console.log('sso:', xobj.readyState, xobj.status );
-            this.setState({
-                httpstate: xobj.readyState,
-                response_time: new Date().toISOString()
-            });
-            decreasingBlur(xobj.readyState, this.refs.detailview);
-            // if(debug) console.log('RelayInfo:', xobj.readyState, xobj.status );
-            if (xobj.readyState == 4 && xobj.status == "200") {
-                let t = xobj.responseText;
-                let j = JSON.parse(t);
-                // if(debug) console.log(JSON.stringify(j,null,3));
-                this.setState({
-                    info: j,
-                    // dummy: Math.random(),
-                    response_time: new Date().toISOString()
-                });
-                document
-                    .getElementById("detailview")
-                    .setAttribute("open", true);
-            }
-        }.bind(this);
-        xobj.send(null);
+        setInterval(() => {
+            this.load();
+        }, this.props.refresh);
     }
 
     load() {
@@ -63,34 +24,37 @@ class RelayInfo extends React.Component {
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
         xobj.open('GET', url, true);
-        xobj.onreadystatechange = function () {
+        xobj.onreadystatechange = () => {
             this.setState({
                 httpstate: xobj.readyState,
-                response_time: new Date().toISOString()
             });
 
+            decreasingBlur(xobj.readyState,this.refs.detailview);
             if (xobj.readyState == 4 && xobj.status == "200") {
                 let t = xobj.responseText;
                 let j = JSON.parse(t);
-                //     console.log(j);
                 this.setState({
-                    info: j,
-                    response_time: new Date().toISOString()
+                    data: j,
+                    httpstate: xobj.readyState
                 });
-                document
-                    .getElementById("detailview")
-                    .setAttribute("open", true);
             }
-        }.bind(this);
+        }
         xobj.send(null);
     }
-    
+
     render() {
-        let jsontxt = JSON.stringify(this.state, null, 3);
+        let openDetails = false;
+        try{ openDetails =this.state.httpstate > 0 ? true : false;}
+        catch(err){console.log(err)};
+
+        let dbgtxt = null;
+        try { dbgtxt = JSON.stringify(this.state.data, null, 3) }
+        catch (err) { console.log(err); }
+
         return (
-            <details ref="detailview" id="detailview">
+            <details ref="detailview" id="detailview" open={openDetails}>
                 <summary>Debug</summary>
-                <pre>{jsontxt}</pre>
+                <pre>{dbgtxt}</pre>
             </details>
         );
     }

@@ -11,15 +11,20 @@ export default class Toggle extends React.Component {
             http: -1,
             toggleDelayMs: 0,
             checked: undefined,
-            response_time: -1,
-            rid: 'relay' + this.props.rid
+            response_time: -1
         };
+        this.rid = 'relay' + this.props.rid;
+        this.urlToggle = `${this.props.restRoot}/relay/${this.props.rid}/toggle`;
+        this.urlStatus = `${this.props.restRoot}/relay/${this.props.rid}/status`;
+
+        this.toggle = this.toggle.bind(this);
+        this.status = this.status.bind(this);
+        this.load = this.load.bind(this);
         this.changeDelay = this.changeDelay.bind(this);
     }
 
     componentDidMount() {
         setInterval(function () {
-            console.log('interval status');
             this.status();
         }.bind(this), this.props.refresh);
     }
@@ -29,35 +34,15 @@ export default class Toggle extends React.Component {
     }
 
     status() {
-        let url = this.props.restRoot + '/relay/' + this.props.rid + '/status';
-        let xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-        xobj.open('GET', url, true);
-        xobj.onreadystatechange = function () {
-
-            decreasingBlur(xobj.readyState, this.refs.toggle);
-
-            if (xobj.readyState < 4) {
-                this.setState({ http: xobj.readyState });
-            }
-
-            if (xobj.readyState == 4 && xobj.status == "200") {
-                let t = xobj.responseText;
-                let j = JSON.parse(t)[this.state.rid];
-                this.setState({
-                    relay: j,
-                    checked: this.isPowered(j),
-                    response_time: Date.now()
-                });
-            }
-        }.bind(this);
-
-        xobj.send(null);
-
+        this.load(this.urlStatus, 0);
     }
 
     toggle() {
-        let url = this.props.restRoot + '/relay/' + this.props.rid + '/toggle';
+        this.setState({ http: -1 });
+        this.load(this.urlToggle, this.state.toggleDelayMs);
+    }
+
+    load(url, delay = 0) {
         let xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
         xobj.open('GET', url, true);
@@ -67,7 +52,7 @@ export default class Toggle extends React.Component {
                 this.setState({ http: xobj.readyState });
             }
             if (xobj.readyState == 4 && xobj.status == "200") {
-                let j = JSON.parse(xobj.responseText)[this.state.rid];
+                let j = JSON.parse(xobj.responseText)[this.rid];
                 this.setState({
                     http: xobj.readyState,
                     relay: j,
@@ -78,9 +63,8 @@ export default class Toggle extends React.Component {
         }.bind(this);
 
         setTimeout(() => {
-            //console.log('delaying request');
             xobj.send(null);
-        }, this.state.toggleDelayMs)
+        }, delay)
 
     }
 
@@ -98,17 +82,11 @@ export default class Toggle extends React.Component {
 
     changeDelay(e) {
         let v = Number(e.target.value) * 1000;
-        console.log('changeDelay', v);
         this.setState({ toggleDelayMs: v });
     }
     render() {
         return (
-            <div ref="toggle" id={`toggle${this.props.rid}`} className="borderLine"
-                style={{
-                    //float: 'right'
-                    columnCount: 3
-                }}>
-
+            <div className="borderLine" style={{ columnCount: 3 }} ref="toggle" key={`toggle${this.props.rid}`}>
                 <div>
                     <h2 style={{ marginLeft: '0.5em' }}>{this.props.title}</h2>
                 </div>
@@ -116,25 +94,30 @@ export default class Toggle extends React.Component {
                 <div>
                     <label className="switch">
                         <input
+
                             type="checkbox"
                             checked={this.state.checked}
                             onChange={this
                                 .toggle
                                 .bind(this)} />
-                        <div className="slider"></div>
+                        <div className="slider"
+                            style={{ backgroundColor: this.state.http < 4 ? 'orange' : 'rgb(72,0,0)' }}>
+                        </div>
                     </label>
                 </div>
                 <div>
                     <input
-                        min="0.5"
-                        step="0.5"
+                        min="1"
+                        step="2"
                         max={60 * 60 * 24}
                         type="number" style={{
-                            fontSize : '1em',
+                            fontSize: '1em',
                             margin: '0.2em',
                             height: '2em',
-/*                            width: '5em'*/
-                        }} placeholder={`delay (${this.state.toggleDelayMs}s)`} onChange={this.changeDelay} />
+                            width: '6em',
+                        }}
+                        placeholder={`delay (${this.state.toggleDelayMs}s)`}
+                        onChange={this.changeDelay} />
                 </div>
             </div >
         );

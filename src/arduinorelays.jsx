@@ -35,17 +35,17 @@ let locstr = new LocalizationString({
 });
 
 class ArduinoRelays extends React.Component {
-    render() {
-        try {
-            if (title_relay0 != undefined) {
-                locstr.relay0.title = title_relay0;
-            }
-            if (title_relay1 != undefined) {
-                locstr.relay1.title = title_relay1;
-            }
-        } catch (err) {
-            console.log(err);
+    constructor(props) {
+        super(props)
+        if (title_relay0 != undefined) {
+            locstr.relay0.title = title_relay0;
         }
+        if (title_relay1 != undefined) {
+            locstr.relay1.title = title_relay1;
+        }
+    }
+
+    render() {
         return (
             <div id="relays" className="borderLine">
                 <h2>{locstr.title}</h2>
@@ -53,13 +53,13 @@ class ArduinoRelays extends React.Component {
                     restRoot={this.props.restRoot}
                     rid="0"
                     title={locstr.relay0.title}
-                    refresh={this.props.refresh}/>
+                    refresh={this.props.refresh} />
                 <Toggle
                     restRoot={this.props.restRoot}
                     rid="1"
                     title={locstr.relay1.title}
-                    refresh={this.props.refresh}/>
-                <RelayInfo restRoot={this.props.restRoot} refresh={this.props.refresh}/>
+                    refresh={this.props.refresh} />
+                <RelayInfo restRoot={this.props.restRoot} refresh={this.props.refresh} />
             </div>
         );
     }
