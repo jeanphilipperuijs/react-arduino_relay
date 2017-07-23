@@ -1,5 +1,6 @@
 import React from 'react';
-import { decreasingBlur } from './decreasingBlur.js';
+//import { decreasingBlur } from './decreasingBlur.js';
+import {decreasingBlur} from 'decreasingblur';
 
 export default class Toggle extends React.Component {
     constructor(props) {
