@@ -1,5 +1,5 @@
 import React from 'react';
-import decreasingBlur from 'decreasingblur';
+import {decreasingBlur} from 'decreasingblur';
 
 
 class RelayInfo extends React.Component {
