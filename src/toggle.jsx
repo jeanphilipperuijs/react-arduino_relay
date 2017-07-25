@@ -1,13 +1,12 @@
 import React from 'react';
 //import { decreasingBlur } from './decreasingBlur.js';
-import {decreasingBlur} from 'decreasingblur';
+import { decreasingBlur } from 'decreasingblur';
 
 export default class Toggle extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            debug: true,
             relay: {},
             http: -1,
             toggleDelayMs: 0,
@@ -48,7 +47,7 @@ export default class Toggle extends React.Component {
         xobj.overrideMimeType("application/json");
         xobj.open('GET', url, true);
         xobj.onreadystatechange = function () {
-            decreasingBlur(xobj.readyState, this.refs.toggle);
+            decreasingBlur(xobj.readyState, this.refs.toggle, this.props.debug);
             if (xobj.readyState < 4) {
                 this.setState({ http: xobj.readyState });
             }
@@ -77,7 +76,6 @@ export default class Toggle extends React.Component {
         if (s.state == "1" || s.status == "1") {
             bs = false;
         }
-        // if(this.state.debug) console.log('isPowered',s,bs);
         return bs;
     }
 
@@ -99,8 +97,7 @@ export default class Toggle extends React.Component {
                             type="checkbox"
                             checked={this.state.checked}
                             onChange={this
-                                .toggle
-                                .bind(this)} />
+                                .toggle} />
                         <div className="slider"
                             style={{ backgroundColor: this.state.http < 4 ? 'orange' : 'rgb(72,0,0)' }}>
                         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {decreasingBlur} from 'decreasingblur';
+import { decreasingBlur } from 'decreasingblur';
 
 
 class RelayInfo extends React.Component {
@@ -29,7 +29,7 @@ class RelayInfo extends React.Component {
                 httpstate: xobj.readyState,
             });
 
-            decreasingBlur(xobj.readyState, this.refs.detailview);
+            decreasingBlur(xobj.readyState, this.refs.detailview,  this.props.debug);
             if (xobj.readyState == 4 && xobj.status == "200") {
                 let t = xobj.responseText;
                 let j = JSON.parse(t);

@@ -7,4 +7,4 @@ let relay = document.createElement("div");
 relay.id = 'arduinorelays'
 document.body.appendChild(relay);
 
-ReactDOM.render(<ArduinoRelays restRoot={restRoot} refresh={refresh} />, relay);
+ReactDOM.render(<ArduinoRelays restRoot={restRoot} refresh={refresh}/>, relay);
