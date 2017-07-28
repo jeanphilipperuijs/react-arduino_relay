@@ -1,5 +1,4 @@
 import React from 'react';
-//import { decreasingBlur } from './decreasingBlur.js';
 import { decreasingBlur } from 'decreasingblur';
 
 export default class Toggle extends React.Component {
@@ -20,6 +19,7 @@ export default class Toggle extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.status = this.status.bind(this);
         this.load = this.load.bind(this);
+
         this.changeDelay = this.changeDelay.bind(this);
     }
 
@@ -87,7 +87,8 @@ export default class Toggle extends React.Component {
         return (
             <div className="borderLine" style={{ columnCount: 3 }} ref="toggle" key={`toggle${this.props.rid}`}>
                 <div>
-                    <h2 style={{ marginLeft: '0.5em' }}>{this.props.title}</h2>
+                    <h2 style={{ marginLeft: '0.5em' }}>
+                        {this.props.title}</h2>
                 </div>
 
                 <div>

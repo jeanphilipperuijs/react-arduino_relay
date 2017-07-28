@@ -46,9 +46,16 @@ class ArduinoRelays extends React.Component {
     }
 
     render() {
+        let info = null;
+        if (false) {
+            info = (<RelayInfo
+                restRoot={this.props.restRoot}
+                refresh={this.props.refresh}
+                debug={this.props.debug} />);
+        }
         return (
-            <div id="relays" className="borderLine">
-                <h2>{locstr.title}</h2>
+            <details id="relays" className="borderLine">
+                <summary><span>{locstr.title}</span></summary>
                 <Toggle
                     restRoot={this.props.restRoot}
                     rid="0"
@@ -61,9 +68,8 @@ class ArduinoRelays extends React.Component {
                     title={locstr.relay1.title}
                     refresh={this.props.refresh}
                     debug={this.props.debug} />
-                <RelayInfo restRoot={this.props.restRoot} refresh={this.props.refresh}
-                    debug={this.props.debug} />
-            </div>
+                {info}
+            </details>
         );
     }
 }
