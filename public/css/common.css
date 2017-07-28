@@ -147,15 +147,10 @@ li {
 	list-style: none;
 }
 
-.borderLine {
+.block {
 	background-color: rgba(128,128,128,0.2);
 	margin: 0.1em;
 	padding: 0.1em;
-/*	border-color: white;
-	border-style: solid;
-	border-radius: 0.1em; 
-	border-width: 0.01em;
-	border-color: white;*/
 }
 .landscape_only {
 	display: none;

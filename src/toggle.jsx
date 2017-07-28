@@ -85,7 +85,11 @@ export default class Toggle extends React.Component {
     }
     render() {
         return (
-            <div className="borderLine" style={{ columnCount: 3 }} ref="toggle" key={`toggle${this.props.rid}`}>
+            <div style={{
+                backgroundColor: 'rgba(128,128,128,0.2)',
+                margin: '0.1em',
+                padding: '0.1em', columnCount: 3
+            }} ref="toggle" key={`toggle${this.props.rid}`}>
                 <div>
                     <h2 style={{ marginLeft: '0.5em' }}>
                         {this.props.title}</h2>
