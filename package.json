@@ -1,8 +1,8 @@
 {
   "name": "relay.ruijs.fr",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Relay Manager",
-  "main": "webpack.config.js",
+  "main": "public/rui.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --host 0.0.0.0 --port 8000",
     "build-dev": "webpack -g --watch",
@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://syno:/git/relay.ruijs.fr"
+    "url": "git@github.com:/3Tron/react-arduino_relay"
   },
   "keywords": [
-    "Nouveau",
+    "relay",
+    "arduino",
     "Ruijs",
-    "Orhand",
-    "Céline",
     "Jean-Philippe"
   ],
   "devDependencies": {
+    "decreasingblur": "^1.0.23",
     "babel-core": "^6.25.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
@@ -32,8 +32,5 @@
     "webpack-dev-server": "^1.16.5"
   },
   "author": "Jean-Philippe Ruijs",
-  "license": "ISC",
-  "dependencies": {
-    "decreasingblur": "^1.0.23"
-  }
+  "license": "ISC"
 }
