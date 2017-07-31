@@ -1,6 +1,6 @@
 {
   "name": "relay.ruijs.fr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Relay Manager",
   "main": "public/rui.js",
   "scripts": {
