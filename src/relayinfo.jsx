@@ -43,16 +43,12 @@ class RelayInfo extends React.Component {
     }
 
     render() {
-        let openDetails = false;
-        try { openDetails = this.state.httpstate > 0 ? true : false; }
-        catch (err) { console.log(err) };
-
         let dbgtxt = null;
         try { dbgtxt = JSON.stringify(this.state.data, null, 3) }
         catch (err) { console.log(err); }
 
         return (
-            <details ref="detailview" id="detailview" open={openDetails}>
+            <details ref="detailview" id="detailview" open={detailsOpen}>
                 <summary>Debug</summary>
                 <pre>{dbgtxt}</pre>
             </details>
