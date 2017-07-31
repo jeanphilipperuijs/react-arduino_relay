@@ -37,12 +37,16 @@ let locstr = new LocalizationString({
 class ArduinoRelays extends React.Component {
     constructor(props) {
         super(props)
-        if (title_relay0 != undefined) {
-            locstr.relay0.title = title_relay0;
-        }
-        if (title_relay1 != undefined) {
-            locstr.relay1.title = title_relay1;
-        }
+        if (relayConf !== undefined) {
+            if (relayConf.titles !== undefined) {
+                if (relayConf.titles[0] != undefined) {
+                    locstr.relay0.title = relayConf.titles[0];
+                }
+                if (relayConf.titles[1] != undefined) {
+                    locstr.relay1.title = relayConf.titles[1];
+                }
+            }
+        } else { console.log('Missing "relayConf"'); }
     }
 
     render() {
@@ -54,7 +58,7 @@ class ArduinoRelays extends React.Component {
                 debug={this.props.debug} />);
         }
         return (
-            <details id="relays" className="borderLine">
+            <details id="relays" className="borderLine" open={this.props.detailsOpen}>
                 <summary><span>{locstr.title}</span></summary>
                 <Toggle
                     restRoot={this.props.restRoot}
